@@ -1,0 +1,78 @@
+Use datastorage;
+# SQL constraints -NOT NULL, UNIQUE, PRimary, Foreign, Check, default
+
+# Not NUll--- It do not accpt NULL values
+
+CREATE TABLE Empl (
+    EmpID INT NOT NULL,
+    EmpName TEXT,
+    Salary DECIMAL(10 , 2 )
+);
+
+select * from empl;
+insert into empl values(112,null,70000);
+
+Insert into empl(EmpName,salary) values('Sham',25000);
+
+ALTER TABLE empl Modify column salary decimal(10,2) NOT NULL;
+
+
+CREATE TABLE AADHAREnroll1(
+    AadharId INT UNIQUE,
+    PersonName VARCHAR(30),
+    Location TEXT
+);
+
+select * from AADHAREnroll;
+Insert into AADHAREnroll1 values(123,'Sriban','chennai');
+Insert into AADHAREnroll values(12345,'Poovarasan','chennai');
+
+delete from AADHAREnroll;
+
+ALTER TABLE AADHAREnroll add UNIQUE (PersonName);
+
+#ALTER TABLE AADHAREnroll  DROP UNIQUE personNAme;
+
+# To apply UNIQUE constraints for two columns
+ALTER TABLE AADHAREnroll ADD constraint Uni_Aadhar unique(AadharId,PersonName);
+
+ALTER TABLE AADHAREnroll DROP Constraint Uni_Aadhar;
+#Primary key--NOT NULL -UNIQUE
+
+CREATE TABLE Newcustomers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName TEXT,
+    Location VARCHAR(30)
+);
+
+CREATE TABLE Newcustomers (
+    CustomerID INT,
+    CustomerName TEXT,
+    Location VARCHAR(30),
+    PRIMARY KEY(CustomerID)
+);
+
+CREATE TABLE Newcustomers (
+    CustomerID INT,
+    CustomerName varchar(30),
+    Location VARCHAR(30),
+    constraint NewCUST_Pk PRIMARY KEY(CustomerID,CustomerName)
+);
+
+Insert into Newcustomers values(null,null,'chennai');
+
+CREATE TABLE NewSales(SalesID int, Item varchar(10),Price int);
+
+Insert into NewSales values(111,null,1000);
+
+# To set Primary Key for Multiple columns
+ALTER TABLE NewSales ADD CONSTRAINT sales_Pk PRIMARY KEY(SALESID,ITEM);
+
+
+#TO set primary key for a single column
+ALTER TABLE NewSales ADD PRIMARY KEY(price);
+
+#To delete a Primary Key with multiple columns
+ALTER TABLE NEWsales DROP constraint Sales_Pk;
+
+ALTER TABLE newsales DROP primary key;
